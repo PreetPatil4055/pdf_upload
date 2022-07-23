@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 app.use(methodOverride('_method'));
 //mongo uri
-//const mongoURI = 'mongodb+srv://preet:1234@cluster0.ih2rd.mongodb.net/?retryWrites=true&w=majority';
+const MONGODB_URI = 'mongodb+srv://preet:1234@cluster0.ih2rd.mongodb.net/?retryWrites=true&w=majority';
 
 //create connection
 const conn = mongoose.createConnection(MONGODB_URI);
@@ -33,7 +33,7 @@ conn.once('open', () => {
 
 //create storage engine
 const storage = new GridFsStorage({
-    url: mongoURI,
+    url: MONGODB_URI,
     file: (req, file) => {
       return new Promise((resolve, reject) => {
         crypto.randomBytes(16, (err, buf) => {
